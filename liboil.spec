@@ -11,10 +11,13 @@ License:	LGPL v2.1
 Group:		Libraries
 Source0:	http://www.schleef.org/liboil/download/%{name}-%{version}.tar.gz
 # Source0-md5:	36f3125ffa30419e6bdf186ef97b2dae
+Patch0:		%{name}-fixes.patch
 URL:		http://www.schleef.org/liboil/
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fomit-frame-pointer
 
 %description
 Liboil is a library of simple functions that are optimized for various
@@ -70,6 +73,7 @@ Statyczna biblioteka liboil.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure
