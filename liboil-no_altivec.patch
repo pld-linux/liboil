@@ -18,3 +18,15 @@ diff -ur liboil-0.3.1.orig/configure.ac liboil-0.3.1/configure.ac
  
  LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L -I\$(top_srcdir)"
  AC_SUBST(LIBOIL_CFLAGS)
+diff -ur liboil-0.3.1.orig/liboil/copy/Makefile.am liboil-0.3.1/liboil/copy/Makefile.am
+--- liboil-0.3.1.orig/liboil/copy/Makefile.am	2004-12-06 09:39:58.000000000 +0100
++++ liboil-0.3.1/liboil/copy/Makefile.am	2005-03-25 10:58:53.000000000 +0100
+@@ -7,7 +7,7 @@
+ 
+ noinst_LTLIBRARIES = libcopy.la $(opt_libs)
+ 
+-if HAVE_CPU_POWERPC
++if DONT_USE_FOR_NOW
+ powerpc_sources = \
+ 	copy_powerpc.c
+ else
