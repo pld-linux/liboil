@@ -1,14 +1,3 @@
---- liboil-0.2.1/liboil/md5/md5_i386.c.orig	2004-11-07 22:37:36.000000000 +0100
-+++ liboil-0.2.1/liboil/md5/md5_i386.c	2004-11-21 16:30:16.000000000 +0100
-@@ -354,7 +354,7 @@
- 
-   asm (
-       "  mov %%ebp, 0x8(%%eax)\n"
--      "  mov %%ebp, 0xc(%%eax)\n"
-+      "  mov %%esp, 0xc(%%eax)\n"
-       "  mov %%eax, %%ebp\n"
-       "  mov (%%ebp), %%esi\n"
-       "  mov (%%esi), %%eax\n"
 --- liboil-0.2.1/liboil/liboilcpu.c.orig	2004-09-03 23:39:10.000000000 +0200
 +++ liboil-0.2.1/liboil/liboilcpu.c	2004-11-21 15:48:43.000000000 +0100
 @@ -44,6 +44,7 @@
