@@ -1,0 +1,20 @@
+diff -ur liboil-0.3.1.orig/configure.ac liboil-0.3.1/configure.ac
+--- liboil-0.3.1.orig/configure.ac	2005-03-25 10:15:58.000000000 +0100
++++ liboil-0.3.1/configure.ac	2005-03-25 10:20:35.000000000 +0100
+@@ -158,11 +158,11 @@
+     [LIBOIL_CFLAGS="$LIBOIL_CFLAGS -Wa,-mregnames"],
+     true)
+ fi
+-if test x$HAVE_CPU_POWERPC = xyes ; then
+-  AS_COMPILER_FLAG(["-Wa,-maltivec"],
+-    [LIBOIL_CFLAGS="$LIBOIL_CFLAGS -Wa,-maltivec"],
+-    true)
+-fi
++#if test x$HAVE_CPU_POWERPC = xyes ; then
++#  AS_COMPILER_FLAG(["-Wa,-maltivec"],
++#    [LIBOIL_CFLAGS="$LIBOIL_CFLAGS -Wa,-maltivec"],
++#    true)
++#fi
+ 
+ LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L -I\$(top_srcdir)"
+ AC_SUBST(LIBOIL_CFLAGS)
