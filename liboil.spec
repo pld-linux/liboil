@@ -6,14 +6,18 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	http://www.schleef.org/liboil/download/%{name}-%{version}.tar.gz
 # Source0-md5:	de49ae5fb8b793ed5cd72d38dc6779ae
+Patch0:		%{name}-opt.patch
 URL:		http://www.schleef.org/liboil/
+BuildRequires:	autoconf >= 2.58
+BuildRequires:	automake >= 1.6
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,8 +77,14 @@ Statyczna biblioteka liboil.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
