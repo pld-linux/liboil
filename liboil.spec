@@ -6,7 +6,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.2.1
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Libraries
 Source0:	http://www.schleef.org/liboil/download/%{name}-%{version}.tar.gz
