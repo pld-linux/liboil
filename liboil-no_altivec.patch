@@ -39,3 +39,34 @@ diff -ur liboil-0.3.1/liboil/copy/Makefile.am liboil-0.3.1.orig/liboil/copy/Make
  
  if HAVE_CPU_I386
  i386_sources = \
+diff -ur liboil-0.3.1.orig/liboil/liboilcpu.c liboil-0.3.1/liboil/liboilcpu.c
+--- liboil-0.3.1.orig/liboil/liboilcpu.c	2005-03-17 21:06:25.000000000 +0100
++++ liboil-0.3.1/liboil/liboilcpu.c	2005-03-25 11:46:45.000000000 +0100
+@@ -127,6 +127,7 @@
+ #endif
+ 
+ #ifdef __powerpc__
++/*
+ static void
+ test_altivec (void * ignored)
+ {
+@@ -136,16 +137,19 @@
+       "  lvx %%v0, %0, %%r0  \n"
+       :: "r" (x));
+ }
++*/
+ 
+ static void
+ oil_cpu_powerpc_getflags(void)
+ {
+ 
+   oil_cpu_fault_check_enable ();
++/*
+   if (oil_cpu_fault_check_try(test_altivec, NULL)) {
+     OIL_DEBUG ("cpu flag altivec");
+     oil_cpu_flags |= OIL_IMPL_FLAG_ALTIVEC;
+   }
++*/
+   oil_cpu_fault_check_disable ();
+ }
+ #endif
