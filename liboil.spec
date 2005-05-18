@@ -1,16 +1,17 @@
 #
 # Conditional build:
+%bcond_without	altivec	# without Altivec support (on ppc)
 %bcond_without	tests	# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
-Version:	0.3.1
-Release:	4
+Version:	0.3.2
+Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	http://www.schleef.org/liboil/download/%{name}-%{version}.tar.gz
-# Source0-md5:	de49ae5fb8b793ed5cd72d38dc6779ae
+# Source0-md5:	f127d90ee8531d03184b76f18e3997be
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 URL:		http://www.schleef.org/liboil/
@@ -79,7 +80,7 @@ Statyczna biblioteka liboil.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+%{!?with_altivec:%patch1 -p1}
 
 %build
 %{__libtoolize}
