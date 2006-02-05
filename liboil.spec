@@ -6,12 +6,12 @@
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
-Version:	0.3.6
+Version:	0.3.7
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	a36b2d9cc71d75d814d7bdca2263290f
+# Source0-md5:	1f08e71fe775bfa1266a741742f1904b
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 URL:		http://liboil.freedesktop.org/wiki/
