@@ -1,0 +1,19 @@
+--- liboil-0.3.7/liboil/powerpc/conv.c.orig	2005-12-04 18:44:55.000000000 +0000
++++ liboil-0.3.7/liboil/powerpc/conv.c	2006-02-11 16:58:30.000000000 +0000
+@@ -28,13 +28,14 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
++#include <liboil/liboiltypes.h>
+ #include <liboil/liboilfunction.h>
+ #include <liboil/liboilclasses.h>
+ 
+ 
+ #define DEFINE_CLIPCONVERT_POWERPC(dsttype,srctype,minval,maxval,insn1,insn2)					\
+-void clipconv_##dsttype##_##srctype##_powerpc(type_##dsttype *dst,	\
+-	int dst_stride, type_##srctype *src, int src_stride, int n)		\
++void clipconv_##dsttype##_##srctype##_powerpc(oil_type_##dsttype *dst,	\
++	int dst_stride, oil_type_##srctype *src, int src_stride, int n)	\
+ {									\
+ 	double min = (minval);						\
+ 	double max = (maxval);						\
