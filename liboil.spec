@@ -1,3 +1,6 @@
+# TODO: seems that gcc4 patch already included in sources -
+#       check if liboil builds under powerpc and remove patch
+#       from repo
 #
 # Conditional build:
 %bcond_without	altivec	# without Altivec support (on ppc)
@@ -6,15 +9,14 @@
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
-Version:	0.3.7
-Release:	2
+Version:	0.3.8
+Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	1f08e71fe775bfa1266a741742f1904b
+# Source0-md5:	a402c4af2603c8fb69b365af0b8ec775
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
-Patch2:		%{name}-gcc4.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -83,7 +85,6 @@ Statyczna biblioteka liboil.
 %setup -q
 %patch0 -p1
 %{!?with_altivec:%patch1 -p1}
-%patch2 -p1
 
 %build
 %{__libtoolize}
