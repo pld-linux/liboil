@@ -28,6 +28,8 @@ BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fomit-frame-pointer
+# CFLAGS_ALTIVEC are set, but not used
+%define		specflags_ppc	-maltivec
 
 %description
 Liboil is a library of simple functions that are optimized for various
