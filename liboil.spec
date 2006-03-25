@@ -1,6 +1,3 @@
-# TODO: seems that gcc4 patch already included in sources -
-#       check if liboil builds under powerpc and remove patch
-#       from repo
 #
 # Conditional build:
 %bcond_without	altivec	# without Altivec support (on ppc)
