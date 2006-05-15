@@ -1,28 +1,32 @@
 #
 # Conditional build:
+%bcond_without	altivec	# without Altivec support (on ppc)
 %bcond_without	tests	# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
-Version:	0.3.1
-Release:	3
+Version:	0.3.8
+Release:	1
 License:	BSD
 Group:		Libraries
-Source0:	http://www.schleef.org/liboil/download/%{name}-%{version}.tar.gz
-# Source0-md5:	de49ae5fb8b793ed5cd72d38dc6779ae
+Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
+# Source0-md5:	a402c4af2603c8fb69b365af0b8ec775
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
-URL:		http://www.schleef.org/liboil/
+URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
 BuildRequires:	glib2-devel >= 2.0
-BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	gtk-doc-automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fomit-frame-pointer
+# CFLAGS_ALTIVEC are set, but not used
+%define		specflags_ppc	-maltivec
 
 %description
 Liboil is a library of simple functions that are optimized for various
@@ -79,7 +83,7 @@ Statyczna biblioteka liboil.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+%{!?with_altivec:%patch1 -p1}
 
 %build
 %{__libtoolize}
@@ -87,8 +91,10 @@ Statyczna biblioteka liboil.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+
 %configure \
 	--with-html-dir=%{_gtkdocdir}
+
 %{__make}
 
 %{?with_tests:%{__make} check}
