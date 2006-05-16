@@ -3,6 +3,10 @@
 %bcond_without	altivec	# without Altivec support (on ppc)
 %bcond_without	tests	# don't perform "make check"
 #
+%ifarch sparc
+%undefine      with_tests
+%endif
+#
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
