@@ -8,6 +8,7 @@ Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.8
 Release:	1
+Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
@@ -60,7 +61,7 @@ w szerszym zakresie aplikacji.
 Summary:	Header files for liboil library
 Summary(pl):	Pliki nag³ówkowe biblioteki liboil
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for liboil library.
@@ -72,7 +73,7 @@ Pliki nag³ówkowe biblioteki liboil.
 Summary:	Static liboil library
 Summary(pl):	Statyczna biblioteka liboil
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static liboil library.
