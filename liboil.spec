@@ -11,7 +11,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.6
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	BSD
 Group:		Libraries
@@ -29,7 +29,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags	-fomit-frame-pointer
+#define		specflags	-fomit-frame-pointer
 # CFLAGS_ALTIVEC are set, but not used
 %define		specflags_ppc	-maltivec
 
@@ -65,7 +65,7 @@ w szerszym zakresie aplikacji.
 Summary:	Header files for liboil library
 Summary(pl):	Pliki nag³ówkowe biblioteki liboil
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for liboil library.
@@ -77,7 +77,7 @@ Pliki nag³ówkowe biblioteki liboil.
 Summary:	Static liboil library
 Summary(pl):	Statyczna biblioteka liboil
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static liboil library.
