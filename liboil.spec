@@ -3,11 +3,15 @@
 %bcond_without	altivec	# without Altivec support (on ppc)
 %bcond_without	tests	# don't perform "make check"
 #
+%ifarch sparc
+%undefine	with_tests
+%endif
+#
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.8
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
