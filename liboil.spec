@@ -7,7 +7,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.6
-Release:	1.5
+Release:	2
 Epoch:		1
 License:	BSD
 Group:		Libraries
