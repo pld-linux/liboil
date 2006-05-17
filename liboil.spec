@@ -7,7 +7,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.6
-Release:	1.4
+Release:	1.5
 Epoch:		1
 License:	BSD
 Group:		Libraries
@@ -17,6 +17,7 @@ Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 Patch2:		%{name}-i386.patch
 Patch3:		%{name}-sparc.patch
+Patch4:		%{name}-sse2.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -93,6 +94,7 @@ Statyczna biblioteka liboil.
 %ifarch sparc
 %patch3 -p1
 %endif
+%patch4 -p1
 
 %build
 %{__libtoolize}
