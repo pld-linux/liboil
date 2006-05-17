@@ -3,15 +3,11 @@
 %bcond_without	altivec	# without Altivec support (on ppc)
 %bcond_without	tests	# don't perform "make check"
 #
-%ifarch sparc
-%undefine      with_tests
-%endif
-#
 Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.6
-Release:	1.2
+Release:	1.3
 Epoch:		1
 License:	BSD
 Group:		Libraries
@@ -20,6 +16,7 @@ Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 Patch2:		%{name}-i386.patch
+Patch3:		%{name}-sparc.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -92,6 +89,9 @@ Statyczna biblioteka liboil.
 %{!?with_altivec:%patch1 -p1}
 %ifarch i386
 %patch2 -p1
+%endif
+%ifarch sparc
+%patch3 -p1
 %endif
 
 %build
