@@ -7,7 +7,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
 Name:		liboil
 Version:	0.3.6
-Release:	1.3
+Release:	1.4
 Epoch:		1
 License:	BSD
 Group:		Libraries
@@ -27,7 +27,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-#define		specflags	-fomit-frame-pointer
+%define		specflags	-fomit-frame-pointer
 # CFLAGS_ALTIVEC are set, but not used
 %define		specflags_ppc	-maltivec
 
