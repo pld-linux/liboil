@@ -4,7 +4,7 @@
 %bcond_without	tests	# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
-Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
+Summary(pl.UTF-8):   Biblioteka zoptymalizowanych wewnÄ™trznych pÄ™tli
 Name:		liboil
 Version:	0.3.10
 Release:	2
@@ -44,42 +44,42 @@ internally. The goal of this project is to consolidate some of the
 code used by various multimedia projects, and also make optimizations
 easier to use by a broad range of applications.
 
-%description -l pl
-Liboil to biblioteka prostych funkcji zoptymalizowanych dla ró¿nych
-procesorów. Funkcje te to zwykle pêtle implementuj±ce proste
-algorytmy, takie jak konwersja tablicy N liczb ca³kowitych na liczby
-zmiennoprzecinkowe albo mno¿enie i dodawanie tablicy N liczb. Takie
-funkcje s± kandydatami do znacz±cej optymalizacji przy u¿yciu ró¿nych
-technik, szczególnie poprzez u¿ycie rozszerzonych instrukcji
-udostêpnianych przez nowoczesne procesory (Altivec, MMX, SSE itp.).
+%description -l pl.UTF-8
+Liboil to biblioteka prostych funkcji zoptymalizowanych dla rÃ³Å¼nych
+procesorÃ³w. Funkcje te to zwykle pÄ™tle implementujÄ…ce proste
+algorytmy, takie jak konwersja tablicy N liczb caÅ‚kowitych na liczby
+zmiennoprzecinkowe albo mnoÅ¼enie i dodawanie tablicy N liczb. Takie
+funkcje sÄ… kandydatami do znaczÄ…cej optymalizacji przy uÅ¼yciu rÃ³Å¼nych
+technik, szczegÃ³lnie poprzez uÅ¼ycie rozszerzonych instrukcji
+udostÄ™pnianych przez nowoczesne procesory (Altivec, MMX, SSE itp.).
 
-Wiele aplikacji multimedialnych i bibliotek ju¿ robi takie rzeczy
-wewnêtrznie. Celem tego projektu jest po³±czenie czê¶ci kodu u¿ywanego
-przez ró¿ne projekty multimedialne i u³atwienie u¿ywania optymalizacji
+Wiele aplikacji multimedialnych i bibliotek juÅ¼ robi takie rzeczy
+wewnÄ™trznie. Celem tego projektu jest poÅ‚Ä…czenie czÄ™Å›ci kodu uÅ¼ywanego
+przez rÃ³Å¼ne projekty multimedialne i uÅ‚atwienie uÅ¼ywania optymalizacji
 w szerszym zakresie aplikacji.
 
 %package devel
 Summary:	Header files for liboil library
-Summary(pl):	Pliki nag³ówkowe biblioteki liboil
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki liboil
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for liboil library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki liboil.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki liboil.
 
 %package static
 Summary:	Static liboil library
-Summary(pl):	Statyczna biblioteka liboil
+Summary(pl.UTF-8):   Statyczna biblioteka liboil
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static liboil library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka liboil.
 
 %prep
