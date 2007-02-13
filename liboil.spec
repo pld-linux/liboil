@@ -4,7 +4,7 @@
 %bcond_without	tests	# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
-Summary(pl.UTF-8):   Biblioteka zoptymalizowanych wewnętrznych pętli
+Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
 Name:		liboil
 Version:	0.3.10
 Release:	2
@@ -60,7 +60,7 @@ w szerszym zakresie aplikacji.
 
 %package devel
 Summary:	Header files for liboil library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki liboil
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki liboil
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -72,7 +72,7 @@ Pliki nagłówkowe biblioteki liboil.
 
 %package static
 Summary:	Static liboil library
-Summary(pl.UTF-8):   Statyczna biblioteka liboil
+Summary(pl.UTF-8):	Statyczna biblioteka liboil
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
