@@ -6,13 +6,13 @@
 Summary:	Library of Optimized Inner Loops
 Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
 Name:		liboil
-Version:	0.3.10
-Release:	2
+Version:	0.3.11
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	770f656bca8166dab33b322d5886a4bf
+# Source0-md5:	65ce3266be385d0c7cd9a1157433332f
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 Patch2:		%{name}-no_sse2_on_i386.patch
