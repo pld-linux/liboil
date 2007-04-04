@@ -15,7 +15,6 @@ Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
 # Source0-md5:	65ce3266be385d0c7cd9a1157433332f
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
-Patch2:		%{name}-no_sse2_on_i386.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -86,7 +85,6 @@ Statyczna biblioteka liboil.
 %setup -q
 %patch0 -p1
 %{!?with_altivec:%patch1 -p1}
-%patch2 -p0
 
 %build
 %{__libtoolize}
