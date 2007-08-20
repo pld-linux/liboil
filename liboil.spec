@@ -1,7 +1,8 @@
 #
 # Conditional build:
-%bcond_without	altivec	# without Altivec support (on ppc)
-%bcond_without	tests	# don't perform "make check"
+%bcond_without	altivec		# without Altivec support (on ppc)
+%bcond_without	static_libs	# don't build static libraries
+%bcond_without	tests		# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
 Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
@@ -94,7 +95,8 @@ Statyczna biblioteka liboil.
 %{__automake}
 
 %configure \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	%{!?with_static_libs:--disable-static}
 
 %{__make} -j1
 
@@ -132,6 +134,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/liboil
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/liboil-*.a
+%endif
