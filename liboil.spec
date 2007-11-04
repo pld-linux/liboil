@@ -26,7 +26,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags	-fomit-frame-pointer
+# cannot remove frame pointers on ix86, SSE wrapper hack relies on
+# gcc stack frames
+#define		specflags	-fomit-frame-pointer
 # CFLAGS_ALTIVEC are set, but not used
 %define		specflags_ppc	-maltivec
 
