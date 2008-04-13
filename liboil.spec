@@ -7,13 +7,13 @@
 Summary:	Library of Optimized Inner Loops
 Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
 Name:		liboil
-Version:	0.3.12
+Version:	0.3.14
 Release:	1
 Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	96ee4c627ffb0db3999cef3c7454b1d9
+# Source0-md5:	7a9f719e50656b795c06c0167012a84f
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-no_altivec.patch
 URL:		http://liboil.freedesktop.org/wiki/
@@ -124,20 +124,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/liboil-*.so.*.*.*
+%doc AUTHORS COPYING NEWS README
+%attr(755,root,root) %{_libdir}/liboil-0.3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/liboil-0.3.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liboil-*.so
-%{_libdir}/liboil-*.la
-%{_includedir}/liboil-*
-%{_pkgconfigdir}/liboil-*.pc
+%attr(755,root,root) %{_libdir}/liboil-0.3.so
+%{_libdir}/liboil-0.3.la
+%{_includedir}/liboil-0.3
+%{_pkgconfigdir}/liboil-0.3.pc
 %{_gtkdocdir}/liboil
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/liboil-*.a
+%{_libdir}/liboil-0.3.a
 %endif
