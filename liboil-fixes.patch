@@ -10,3 +10,56 @@
  
        dest[i] = atmp[0];
        if (i+1<n) dest[i+1] = atmp[1];
+--- liboil-0.3.16/liboil/copy/splat_ref.c	2007-11-16 03:53:47.000000000 +0100
++++ liboil-0.3.16.fix/liboil/copy/splat_ref.c	2009-05-03 03:37:00.000000000 +0200
+@@ -101,18 +101,40 @@
+ #ifdef HAVE_UNALIGNED_ACCESS
+ static void splat_u8_ns_int (uint8_t *dest, const uint8_t *param, int n)
+ {
+-  int p;
+-  while(n&3) {
+-    *dest = *param;
+-    dest++;
+-    n--;
++  int i;
++  uint32_t p, *dest32;
++  size_t diff;
++
++  if(n<4) {
++    for ( i=0; i<n; i++) {
++      dest[i] = *param;
++    }
++    return;
+   }
+-  n >>= 2;
++
+   p = (*param<<24) | (*param<<16) | (*param<<8) | (*param);
+-  while(n>0){
+-    *(uint32_t *)dest = p;
+-    dest+=4;
+-    n--;
++
++  dest32 = (void *)dest;
++  dest32[0] = p; /* may be unaligned */
++
++  /* align */
++  dest32 += 1;
++  dest32 = (void *)( ((uintptr_t)dest32) & (~3) );
++  diff = (void *)dest32 - (void *)dest;
++
++  n -= diff;
++  diff = n & 3;
++  n >>= 2;
++  /* aligned copy */
++  for( i=0; i<n; i++) {
++    dest32[i] = p;
++  }
++  dest32 += n;
++
++  /* unaligned */
++  if ( diff ) {
++    dest32 = (void *) ((uintptr_t)dest32 + diff - 4);
++    dest32[0] = p;
+   }
+ }
+ OIL_DEFINE_IMPL(splat_u8_ns_int, splat_u8_ns);
