@@ -99,7 +99,7 @@ Statyczna biblioteka liboil.
 	--with-html-dir=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
 
-%{__make} -j1
+%{__make}
 
 %{?with_tests:%{__make} check}
 
