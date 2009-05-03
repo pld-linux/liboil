@@ -1,0 +1,12 @@
+--- liboil-0.3.16/liboil/powerpc/resample.c	2007-11-16 03:53:47.000000000 +0100
++++ liboil-0.3.16.fix/liboil/powerpc/resample.c	2009-05-03 02:05:31.000000000 +0200
+@@ -86,7 +86,8 @@
+           "  vpkuhus v0, v0, v0\n"
+           "  stvx v0, 0, %0\n"
+           :
+-          : "b" (atmp));
++          : "b" (atmp)
++	  : "r11" );
+ 
+       dest[i] = atmp[0];
+       if (i+1<n) dest[i+1] = atmp[1];
