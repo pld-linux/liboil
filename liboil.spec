@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_without	altivec		# without Altivec support (on ppc)
 %bcond_without	static_libs	# don't build static libraries
 %bcond_without	tests		# don't perform "make check"
 #
@@ -16,7 +15,6 @@ Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
 # Source0-md5:	febb1d9f9bc4c440fcf622dc90f8b6b7
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-fixes.patch
-Patch2:		%{name}-no_altivec.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -89,7 +87,6 @@ Statyczna biblioteka liboil.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%{!?with_altivec:%patch2 -p1}
 
 %build
 %{__libtoolize}
