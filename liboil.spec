@@ -20,6 +20,7 @@ BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk-doc-automake
+BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
