@@ -1,31 +1,34 @@
 #
 # Conditional build:
-%bcond_without	altivec	# without Altivec support (on ppc)
-%bcond_without	tests	# don't perform "make check"
+%bcond_without	static_libs	# don't build static libraries
+%bcond_without	tests		# don't perform "make check"
 #
 Summary:	Library of Optimized Inner Loops
-Summary(pl):	Biblioteka zoptymalizowanych wewnêtrznych pêtli
+Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnÄ™trznych pÄ™tli
 Name:		liboil
-Version:	0.3.10
-Release:	1
+Version:	0.3.16
+Release:	2
 Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	770f656bca8166dab33b322d5886a4bf
+# Source0-md5:	febb1d9f9bc4c440fcf622dc90f8b6b7
 Patch0:		%{name}-opt.patch
-Patch1:		%{name}-no_altivec.patch
+Patch1:		%{name}-fixes.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk-doc-automake
+BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		specflags	-fomit-frame-pointer
+# cannot remove frame pointers on ix86, SSE wrapper hack relies on
+# gcc stack frames
+#define		specflags	-fomit-frame-pointer
 # CFLAGS_ALTIVEC are set, but not used
 %define		specflags_ppc	-maltivec
 
@@ -43,48 +46,50 @@ internally. The goal of this project is to consolidate some of the
 code used by various multimedia projects, and also make optimizations
 easier to use by a broad range of applications.
 
-%description -l pl
-Liboil to biblioteka prostych funkcji zoptymalizowanych dla ró¿nych
-procesorów. Funkcje te to zwykle pêtle implementuj±ce proste
-algorytmy, takie jak konwersja tablicy N liczb ca³kowitych na liczby
-zmiennoprzecinkowe albo mno¿enie i dodawanie tablicy N liczb. Takie
-funkcje s± kandydatami do znacz±cej optymalizacji przy u¿yciu ró¿nych
-technik, szczególnie poprzez u¿ycie rozszerzonych instrukcji
-udostêpnianych przez nowoczesne procesory (Altivec, MMX, SSE itp.).
+%description -l pl.UTF-8
+Liboil to biblioteka prostych funkcji zoptymalizowanych dla rÃ³Å¼nych
+procesorÃ³w. Funkcje te to zwykle pÄ™tle implementujÄ…ce proste
+algorytmy, takie jak konwersja tablicy N liczb caÅ‚kowitych na liczby
+zmiennoprzecinkowe albo mnoÅ¼enie i dodawanie tablicy N liczb. Takie
+funkcje sÄ… kandydatami do znaczÄ…cej optymalizacji przy uÅ¼yciu rÃ³Å¼nych
+technik, szczegÃ³lnie poprzez uÅ¼ycie rozszerzonych instrukcji
+udostÄ™pnianych przez nowoczesne procesory (Altivec, MMX, SSE itp.).
 
-Wiele aplikacji multimedialnych i bibliotek ju¿ robi takie rzeczy
-wewnêtrznie. Celem tego projektu jest po³±czenie czê¶ci kodu u¿ywanego
-przez ró¿ne projekty multimedialne i u³atwienie u¿ywania optymalizacji
+Wiele aplikacji multimedialnych i bibliotek juÅ¼ robi takie rzeczy
+wewnÄ™trznie. Celem tego projektu jest poÅ‚Ä…czenie czÄ™Å›ci kodu uÅ¼ywanego
+przez rÃ³Å¼ne projekty multimedialne i uÅ‚atwienie uÅ¼ywania optymalizacji
 w szerszym zakresie aplikacji.
 
 %package devel
 Summary:	Header files for liboil library
-Summary(pl):	Pliki nag³ówkowe biblioteki liboil
+Summary(pl.UTF-8):	Pliki nagÅ‚Ã³wkowe biblioteki liboil
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for liboil library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki liboil.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki liboil.
 
 %package static
 Summary:	Static liboil library
-Summary(pl):	Statyczna biblioteka liboil
+Summary(pl.UTF-8):	Statyczna biblioteka liboil
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static liboil library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka liboil.
 
 %prep
 %setup -q
 %patch0 -p1
-%{!?with_altivec:%patch1 -p1}
+%patch1 -p1
+
+rm -f m4/libtool.m4 m4/lt*.m4
 
 %build
 %{__libtoolize}
@@ -94,7 +99,8 @@ Statyczna biblioteka liboil.
 %{__automake}
 
 %configure \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	%{!?with_static_libs:--disable-static}
 
 %{__make}
 
@@ -120,18 +126,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/liboil-*.so.*.*.*
+%doc AUTHORS COPYING NEWS README
+%attr(755,root,root) %{_libdir}/liboil-0.3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/liboil-0.3.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liboil-*.so
-%{_libdir}/liboil-*.la
-%{_includedir}/liboil-*
-%{_pkgconfigdir}/liboil-*.pc
+%attr(755,root,root) %{_libdir}/liboil-0.3.so
+%{_libdir}/liboil-0.3.la
+%{_includedir}/liboil-0.3
+%{_pkgconfigdir}/liboil-0.3.pc
 %{_gtkdocdir}/liboil
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/liboil-*.a
+%{_libdir}/liboil-0.3.a
+%endif
