@@ -6,30 +6,29 @@
 Summary:	Library of Optimized Inner Loops
 Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
 Name:		liboil
-Version:	0.3.16
-Release:	3
+Version:	0.3.17
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
-# Source0-md5:	febb1d9f9bc4c440fcf622dc90f8b6b7
+# Source0-md5:	47dc734f82faeb2964d97771cfd2e701
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-fixes.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
 BuildRequires:	glib2-devel >= 2.0
-BuildRequires:	gtk-doc-automake
+BuildRequires:	gtk-doc-automake >= 1.0
 BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# cannot remove frame pointers on ix86, SSE wrapper hack relies on
-# gcc stack frames
-#define		specflags	-fomit-frame-pointer
-# CFLAGS_ALTIVEC are set, but not used
+# NOTE: cannot remove frame pointers on x86, SSE wrapper hack relies on gcc stack frames
+
+# won't compile without altivec (CFLAGS_ALTIVEC are set, but not used)
 %define		specflags_ppc	-maltivec
 
 %description
