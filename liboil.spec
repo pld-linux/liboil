@@ -7,7 +7,7 @@ Summary:	Library of Optimized Inner Loops
 Summary(pl.UTF-8):	Biblioteka zoptymalizowanych wewnętrznych pętli
 Name:		liboil
 Version:	0.3.17
-Release:	1
+Release:	2
 Epoch:		1
 License:	BSD
 Group:		Libraries
@@ -15,6 +15,7 @@ Source0:	http://liboil.freedesktop.org/download/%{name}-%{version}.tar.gz
 # Source0-md5:	47dc734f82faeb2964d97771cfd2e701
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-fixes.patch
+Patch2:		x32.patch
 URL:		http://liboil.freedesktop.org/wiki/
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.6
@@ -87,6 +88,9 @@ Statyczna biblioteka liboil.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%ifarch x32
+%patch2 -p1
+%endif
 
 rm -f m4/libtool.m4 m4/lt*.m4
 

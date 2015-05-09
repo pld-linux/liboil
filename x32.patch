@@ -1,0 +1,13 @@
+--- liboil-0.3.17/liboil/Makefile.am~	2010-02-04 21:08:33.000000000 +0100
++++ liboil-0.3.17/liboil/Makefile.am	2015-05-10 01:14:40.930512122 +0200
+@@ -30,8 +30,8 @@
+ 
+ if HAVE_AMD64
+ if HAVE_GCC_ASM
+-SUBDIRS += amd64 i386_amd64
+-libs += amd64/libamd64.la i386_amd64/libi386_amd64.la
++SUBDIRS += i386_amd64
++libs += i386_amd64/libi386_amd64.la
+ endif
+ endif
+ 
