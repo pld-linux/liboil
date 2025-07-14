@@ -86,10 +86,10 @@ Statyczna biblioteka liboil.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %ifarch x32
-%patch2 -p1
+%patch -P2 -p1
 %endif
 
 rm -f m4/libtool.m4 m4/lt*.m4
